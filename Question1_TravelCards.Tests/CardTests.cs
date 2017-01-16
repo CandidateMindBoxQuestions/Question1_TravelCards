@@ -1,6 +1,4 @@
-﻿using System;
-using NUnit.Framework;
-using Moq;
+﻿using NUnit.Framework;
 
 namespace Question1_TravelCards.Tests
 {
@@ -12,12 +10,14 @@ namespace Question1_TravelCards.Tests
         [OneTimeSetUp]
         public void Initialize()
         {
+            //arrange
             _card = new Card("from", "to");
         }
 
         [Test]
         public void Constructor_works_correctly()
         {
+            //assert
             Assert.That((_card.From == "from") && (_card.To == "to"));
         }
     }
