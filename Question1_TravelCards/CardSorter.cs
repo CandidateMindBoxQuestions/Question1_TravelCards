@@ -14,9 +14,9 @@ namespace Question1_TravelCards
             IList<Card> orderedSet = new List<Card>();
 
             Dictionary<string, Card> fromCardToCard = new Dictionary<string, Card>(setCount);
-            FromCardToCardDictionaryInit(set, fromCardToCard);
+            FromCardToCardDictionaryInit(fromCardToCard, set);
 
-            Card firstCard = GetFirstCard(set, fromCardToCard);
+            Card firstCard = GetFirstCard(set);
             orderedSet.Add(firstCard);
             
             set.Remove(firstCard);
@@ -28,22 +28,24 @@ namespace Question1_TravelCards
         }
 
         //O(n), initialize dictionary fromCardToCard by cards in baseCards
-        private void FromCardToCardDictionaryInit(IList<Card> baseCards, Dictionary<string, Card> fromCardToCard)
+        private void FromCardToCardDictionaryInit(Dictionary<string, Card> fromCardToCard, IList<Card> baseCards)
         {
             foreach (Card card in baseCards)
                 fromCardToCard.Add(card.From, card);
         }
 
         //O(n), get first card of chain in set
-        private Card GetFirstCard(IList<Card> set, Dictionary<string, Card> fromToCard)
+        private Card GetFirstCard(IList<Card> set)
         {
-            HashSet<string> froms=new HashSet<string>();
-            foreach (var card in set)
-                froms.Add(card.From);
-            foreach (var card in set)
-                froms.Remove(card.To);
+            var ffromToCard = new Dictionary<string, Card>();
 
-            return fromToCard[froms.First()];
+            foreach (var card in set)
+                ffromToCard.Add(card.From, card);
+
+            foreach (var card in set)
+                ffromToCard.Remove(card.To);
+
+            return ffromToCard.First().Value;
         }
 
         //O(1), get the following link card for card

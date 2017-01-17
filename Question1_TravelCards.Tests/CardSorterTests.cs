@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace Question1_TravelCards.Tests
@@ -44,7 +45,7 @@ namespace Question1_TravelCards.Tests
         }
 
         [Test]
-        public void Sort_sorted_collenction_is_sorted_collection()
+        public void Sort_sorted_collenction_should_stay_sorted()
         {
             //Arrange
             var set = new List<Card>()
@@ -62,7 +63,7 @@ namespace Question1_TravelCards.Tests
         }
 
         [Test]
-        public void Sort_sorting_unordered_collection()
+        public void Sort_unordered_collection_should_be_sorted()
         {
             //Arrange
             var set = new List<Card>()
@@ -88,6 +89,7 @@ namespace Question1_TravelCards.Tests
             Assert.That(IsSorted(orderedSet));
         }
 
+        //set sorting rule
         private static bool IsSorted(IList<Card> set)
         {
             bool isSorted = true;
